@@ -272,7 +272,7 @@
           <mainClass>${main.class}</mainClass>
         </configuration>
       </plugin-->
-      <plugin>
+      <!--plugin>
         <groupId>com.spotify</groupId>
         <artifactId>dockerfile-maven-plugin</artifactId>
         <version>1.4.9</version>
@@ -283,7 +283,7 @@
             <goals>
               <goal>build</goal>
               <goal>tag</goal>
-              <!--goal>push</goal-->
+              <goal>push</goal>
             </goals>
             <configuration>
               <tag>latest</tag>
@@ -295,7 +295,7 @@
             <goals>
               <goal>build</goal>
               <goal>tag</goal>
-              <!--goal>push</goal-->
+              <goal>push</goal>
             </goals>
             <configuration>
               <tag>${git.commit.id.abbrev}</tag>
@@ -305,7 +305,7 @@
         <configuration>
           <repository>ibuchh/spring-petclinic</repository>
         </configuration>
-      </plugin>
+      </plugin-->
 
     </plugins>
   </build>
