@@ -12,7 +12,7 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
-         stage('Build Docker Image') {
+        stage('Build Docker Image') {
             when {
                 branch 'master'
             }
