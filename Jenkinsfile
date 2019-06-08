@@ -1,15 +1,15 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3-alpine' 
+            args '-v /root/.m2:/root/.m2' 
+        }
+    }
     stages {
-        stage('Maven Install') {
-           agent {
-              docker {
-                 image 'maven:3.5.0'
-              }
-            }
+        stage('Build Application') { 
             steps {
                 echo '=== Building Petclinic Application ==='
-                sh 'mvn package -DskipTests'
+                sh 'mvn -B -DskipTests clean package' 
             }
         }
          stage('Build Docker Image') {
@@ -32,7 +32,6 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_ibuchh') {
                         app.push("${env.BUILD_NUMBER}")
-                        app.push("${env.COMMIT_ID}")
                         app.push("latest")
                     }
                 }
