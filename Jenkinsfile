@@ -1,6 +1,5 @@
 pipeline {
     agent any
- 
     stages {
         stage('Maven Install') {
            agent {
@@ -33,6 +32,7 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_ibuchh') {
                         app.push("${env.BUILD_NUMBER}")
+                        app.push("${env.COMMIT_ID}")
                         app.push("latest")
                     }
                 }
