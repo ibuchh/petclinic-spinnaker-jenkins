@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        maven 'M3'
+    }
     stages {
         stage('Maven Install') {
            agent {
@@ -8,9 +11,14 @@ pipeline {
              }
            }
            steps {
-             sh 'mvn package -DskipTests'
+             sh 'mvn package -DskipTests=true'
            }
          }
+        stage ('Build') {
+            steps {
+                sh 'mvn -v' 
+            }
+        }
          stage('Build Docker Image') {
             when {
                 branch 'master'
