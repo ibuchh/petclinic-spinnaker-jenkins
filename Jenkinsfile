@@ -21,6 +21,7 @@ pipeline {
                 }
             }
             steps {
+                echo '=== Testing Petclinic Application ==='
                 sh 'mvn test'
             }
             post {
