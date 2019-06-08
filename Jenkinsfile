@@ -4,19 +4,9 @@ pipeline {
         maven 'M3'
     }
     stages {
-        stage('Maven Install') {
-           agent {
-             docker {
-               image 'maven:3.5.0'
-             }
-           }
-           steps {
-             sh 'mvn package -DskipTests=true'
-           }
-         }
         stage ('Build') {
             steps {
-                sh 'mvn -v' 
+                sh 'mvn package -DskipTests=true' 
             }
         }
          stage('Build Docker Image') {
