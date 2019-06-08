@@ -1,23 +1,15 @@
-#!groovy
-
 pipeline {
-  agent none
-  stages {
-    stage('Maven Install') {
-      agent {
-        docker {
-          image 'maven:3.5.0'
+    agent any
+    stages {
+         stage('Build Docker Image') {
+            when {
+                branch 'master'
+            }
+            steps {
+                script {
+                    app = docker.build("ibuchh/petclinic-spinnaker-jenkins")
+                }
+            }
         }
-      }
-      steps {
-        sh 'mvn package -DskipTests'
-      }
     }
-    stage('Docker Build') {
-      agent any
-      steps {
-        sh 'docker build -t ibuchh/petclinic-spinnaker-jenkins:latest .'
-      }
-    }
-  }
 }
