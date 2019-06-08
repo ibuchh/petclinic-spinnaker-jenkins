@@ -1,12 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
-            steps {
-                echo 'Running build automation'
-                sh 'mvn -Dmaven.test.skip=true package'
-            }
-        }
+        stage('Maven Install') {
+           agent {
+             docker {
+               image 'maven:3.5.0'
+             }
+           }
+           steps {
+             sh 'mvn package -DskipTests'
+           }
+         }
          stage('Build Docker Image') {
             when {
                 branch 'master'
