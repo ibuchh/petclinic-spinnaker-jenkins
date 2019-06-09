@@ -4,6 +4,8 @@ env:
     build_version: "0.1"
 phases:
   install:
+    runtime-versions:
+      java: openjdk8
     commands:
       - echo Entering install phase...
       - wget https://jcenter.bintray.com/org/apache/maven/apache-maven/3.3.9/apache-maven-3.3.9-bin.tar.gz 
