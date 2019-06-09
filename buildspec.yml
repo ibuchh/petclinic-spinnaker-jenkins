@@ -1,30 +1,30 @@
 version: 0.2
+
 env:
   variables:
-    build_version: "0.1"
+    CONF: "prod.conf"
+
 phases:
   install:
     commands:
-      - echo Entered the install phase...
+      - echo Testing
       - apt-get update -y
-      - apt-get install -y maven
-    finally:
-      - echo This always runs even if the update or install command fails 
+      - apt-get install -y apt-transport-https ca-certificates software-properties-common
+      - add-apt-repository -y ppa:openjdk-r/ppa
+      - sudo apt-get update -y
+      - apt-get install -y openjdk-8-jdk
+      - echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+      - apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+      - apt-get update -y
+      - apt-get install -y sbt
+      - pip install --upgrade awscli
   pre_build:
     commands:
-      - echo Entered the pre_build phase...
-      - docker login –u ibuchh –p Shadab12
-      - mvn clean package
-    finally:
-      - echo This always runs even if the login command fails
+      - $(aws ecr get-login --no-include-email --region us-east-1)
   build:
     commands:
-      - echo build Docker image on `date`
-      - curr_working_dir=`pwd`
-      - docker build -t petclinic-spinnaker-jenkins:latest .
-      - docker tag petclinic-spinnaker-jenkins:latest ibuchh/petclinic-spinnaker-jenkins:latest
+      - sbt test
+      - sbt docker:publish
   post_build:
     commands:
-      - echo build Docker image complete `date`
-      - echo push latest Docker images to Dokcer Hub ...
-      - docker push ibuchh/petclinic-spinnaker-jenkins:latest
+      - echo Build completed on `date`
