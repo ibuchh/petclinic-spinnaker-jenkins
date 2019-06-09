@@ -5,18 +5,18 @@ env:
 phases:
   install:
     commands:
-      - echo install step...
-      - apt-get clean
+      - echo Entered the install phase...
       - apt-get update -y
-      - apt-get install -y software-properties-common
-      - add-apt-repository ppa:openjdk-r/ppa
-      - apt-get update -y
-      - apt-get install -y openjdk-8-jdk
       - apt-get install -y maven
+    finally:
+      - echo This always runs even if the update or install command fails 
   pre_build:
     commands:
-      - echo running mvn ...
+      - echo Entered the pre_build phase...
+      - docker login –u ibuchh –p Shadab12
       - mvn clean package
+    finally:
+      - echo This always runs even if the login command fails
   build:
     commands:
       - echo build Docker image on `date`
