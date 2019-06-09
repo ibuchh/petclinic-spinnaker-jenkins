@@ -6,7 +6,7 @@ phases:
   install:
     commands:
       - echo install step...
-      - yum install maven -y
+      - apt-get install maven -y
   pre_build:
     commands:
       - echo running mvn ...
