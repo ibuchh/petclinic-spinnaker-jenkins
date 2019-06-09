@@ -7,26 +7,26 @@ phases:
     runtime-versions:
       java: openjdk8
     commands:
-      - echo Entering install phase...
-      - wget https://jcenter.bintray.com/org/apache/maven/apache-maven/3.3.9/apache-maven-3.3.9-bin.tar.gz 
-      - tar xzvf apache-maven-3.3.9-bin.tar.gz -C /opt/
-      - export PATH=/opt/apache-maven-3.3.9/bin:$PATH
-      - wget https://dl.bintray.com/jfrog/jfrog-cli-go/1.12.1/jfrog-cli-linux-amd64/jfrog
-      - chmod +x jfrog
+      - echo Entered the install phase...
+      - apt-get update -y
+      - apt-get install -y maven
+    finally:
+      - echo This always runs even if the update or install command fails 
   pre_build:
     commands:
-      - echo Entering pre_build phase...
+      - echo Entered the pre_build phase...
+      - docker login –u ibuchh –p Shadab12
+      - mvn clean package
+    finally:
+      - echo This always runs even if the login command fails
   build:
     commands:
-      - echo Entering build phase...
-      - echo Build started on `date`
-      - mvn  compile
-      - mvn  package
+      - echo build Docker image on `date`
+      - curr_working_dir=`pwd`
+      - docker build -t petclinic-spinnaker-jenkins:latest .
+      - docker tag petclinic-spinnaker-jenkins:latest ibuchh/petclinic-spinnaker-jenkins:latest
   post_build:
     commands:
-      - echo Entering post_build phase...
-      - echo Build completed on `date`
-artifacts:
-  type: zip
-  files:
-    - 'target/ROOT.war'
+      - echo build Docker image complete `date`
+      - echo push latest Docker images to Dokcer Hub ...
+      - docker push ibuchh/petclinic-spinnaker-jenkins:latest
