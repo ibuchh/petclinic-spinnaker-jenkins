@@ -1,7 +1,5 @@
 version: 0.2
 env:
-  parameter-store:
-    ARTIFACTORY_API_KEY: "ARTIFACTORY_CREDENTIALS"
 phases:
   install:
     commands:
