@@ -6,7 +6,12 @@ phases:
   install:
     commands:
       - echo install step...
-      - apt-get install maven -y
+      - apt-get update -y
+      - apt-get install -y software-properties-common
+      - add-apt-repository ppa:openjdk-r/ppa
+      - apt-get update -y
+      - apt-get install -y openjdk-8-jdk
+      - apt-get install -y maven
   pre_build:
     commands:
       - echo running mvn ...
