@@ -15,7 +15,7 @@ phases:
   pre_build:
     commands:
       - echo Entered the pre_build phase...
-      - docker login –u ibuchh –p Shadab12
+      - docker login –u 'ibuchh' –p 'Shadab12'
       - mvn clean package
     finally:
       - echo This always runs even if the login command fails
