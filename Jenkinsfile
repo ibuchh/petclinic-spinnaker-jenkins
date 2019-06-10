@@ -1,6 +1,13 @@
 pipeline {
     agent any
-
+    triggers {
+        pollSCM "* * * * *"
+    }
+    
+    options {
+        timestamps()
+        ansiColor("xterm")
+    }
     
     stages {
         stage('Build Application') { 
