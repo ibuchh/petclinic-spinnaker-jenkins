@@ -4,11 +4,6 @@ pipeline {
         pollSCM "* * * * *"
     }
     
-    options {
-        timestamps()
-        ansiColor("xterm")
-    }
-    
     stages {
         stage('Build Application') { 
             steps {
