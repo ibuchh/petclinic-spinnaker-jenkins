@@ -49,7 +49,7 @@ pipeline {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_ibuchh') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
-                        app.push(GIT_COMMIT_HASH)
+
                     }
                 }
             }
