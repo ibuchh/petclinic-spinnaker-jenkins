@@ -5,6 +5,7 @@ env:
     JAVA_HOME: "/usr/lib/jvm/java-8-openjdk-amd64"
   parameter-store:
     LOGIN_PASSWORD: /CodeBuild/dockerLoginPassword
+    LOGIN_USER: /CodeBuild/dockerLoginUser
 phases:
   install:
     runtime-versions:
@@ -19,6 +20,7 @@ phases:
     commands:
       - echo Entered the pre_build phase...
       - docker login --username ibuchh --password $LOGIN_PASSWORD
+      - docker login –u $LOGIN_USER –p $LOGIN_PASSWORD
       - mvn clean package
     finally:
       - echo This always runs even if the login command fails
