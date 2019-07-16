@@ -30,9 +30,12 @@ phases:
       - echo build Docker image on `date`
       - curr_working_dir=`pwd`
       - docker build -t petclinic-spinnaker-jenkins:$IMAGE_TAG .
+      - docker build -t petclinic-spinnaker-jenkins:latest .
       - docker tag petclinic-spinnaker-jenkins:$IMAGE_TAG ibuchh/petclinic-spinnaker-jenkins:$IMAGE_TAG
+      - docker tag petclinic-spinnaker-jenkins:latest ibuchh/petclinic-spinnaker-jenkins:latest
   post_build:
     commands:
       - echo build Docker image complete `date`
       - echo push latest Docker images to Dokcer Hub ...
       - docker push ibuchh/petclinic-spinnaker-jenkins:$IMAGE_TAG
+      - docker push ibuchh/petclinic-spinnaker-jenkins:latest
