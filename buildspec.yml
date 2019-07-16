@@ -21,6 +21,7 @@ phases:
       - echo Entered the pre_build phase...
       - docker login --username ibuchh --password $LOGIN_PASSWORD
       - docker login –u $LOGIN_USER –p $LOGIN_PASSWORD
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - mvn clean package
     finally:
       - echo This always runs even if the login command fails
@@ -28,10 +29,10 @@ phases:
     commands:
       - echo build Docker image on `date`
       - curr_working_dir=`pwd`
-      - docker build -t petclinic-spinnaker-jenkins:latest .
-      - docker tag petclinic-spinnaker-jenkins:latest ibuchh/petclinic-spinnaker-jenkins:latest
+      - docker build -t petclinic-spinnaker-jenkins:$IMAGE_TAG .
+      - docker tag petclinic-spinnaker-jenkins:$IMAGE_TAG ibuchh/petclinic-spinnaker-jenkins:$IMAGE_TAG
   post_build:
     commands:
       - echo build Docker image complete `date`
       - echo push latest Docker images to Dokcer Hub ...
-      - docker push ibuchh/petclinic-spinnaker-jenkins:latest
+      - docker push ibuchh/petclinic-spinnaker-jenkins:$IMAGE_TAG
