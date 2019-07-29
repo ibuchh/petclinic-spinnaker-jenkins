@@ -46,8 +46,9 @@ pipeline {
                 echo '=== Pushing Petclinic Docker Image ==='
                 script {
                     GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_ibuchh') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                         app.push("${env.BUILD_NUMBER}")
+                        app.push("$GIT_COMMIT_HASH")
                         app.push("latest")
 
                     }
