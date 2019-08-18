@@ -1,7 +1,7 @@
 pipeline {
     def dirpath = "src"
     agent any
-    dir(dirpath){
+    dir($dirpath){
        triggers {
         pollSCM "* * * * *"
        }
