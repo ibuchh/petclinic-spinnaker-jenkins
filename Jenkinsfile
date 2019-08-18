@@ -1,9 +1,11 @@
 pipeline {
+    def dirpath = "src"
     agent any
-    triggers {
+    dir(dirpath){
+       triggers {
         pollSCM "* * * * *"
+       }
     }
-    
     stages {
         stage('Build Application') { 
             steps {
