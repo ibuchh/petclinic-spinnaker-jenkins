@@ -1,5 +1,4 @@
 pipeline {
-    dirpath = "src"
     agent any
        triggers {
         pollSCM "* * * * *"
