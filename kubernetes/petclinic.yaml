@@ -17,6 +17,7 @@ spec:
         image: ibuchh/petclinic-spinnaker-jenkins
         ports:
         - containerPort: 8080
+        imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
