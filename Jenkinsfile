@@ -48,7 +48,6 @@ pipeline {
                     SHORT_COMMIT = "${GIT_COMMIT_HASH[0..7]}"
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                         app.push("$SHORT_COMMIT")
-                        app.push("latest")
 
                     }
                 }
