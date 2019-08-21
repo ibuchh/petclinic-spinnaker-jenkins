@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: petclinic
-        image: ibuchh/petclinic-spinnaker-jenkins:latest
+        image: ibuchh/petclinic-spinnaker-jenkins:'${ parameters.tag ?: latest }'
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
