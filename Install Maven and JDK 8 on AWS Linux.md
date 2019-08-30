@@ -3,11 +3,9 @@
 <em>https://docs.aws.amazon.com/neptune/latest/userguide/iam-auth-connect-prerq.html</em>
 
 #### Enter the following to add a repository with a Maven package.
-<em>
 ```
 sudo wget https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
 ```
-  </em>
 #### Enter the following to set the version number for the packages.
 ```
 sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
