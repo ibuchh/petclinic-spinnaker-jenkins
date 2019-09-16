@@ -23,9 +23,15 @@ sudo yum install java-1.8.0-devel
 sudo /usr/sbin/alternatives --config java
 ```
 #### When prompted, enter the number for Java 8.
+```
+sudo alternatives --set java /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java
+```
 
 #### Enter the following to set Java 8 as the default compiler on your EC2 instance.
 ```
 sudo /usr/sbin/alternatives --config javac
 ```
 #### When prompted, enter the number for Java 8.
+```
+sudo alternatives --set javac /usr/lib/jvm/java-1.8.0-openjdk.x86_64/bin/javac
+```
