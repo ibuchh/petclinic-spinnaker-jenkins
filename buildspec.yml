@@ -48,6 +48,7 @@ phases:
       - export IMAGE_NAME='petclinic'
       - export IMAGE_URI=$DOCKER_REPO_URL:$IMAGE_TAG
       - "printf '[{\"name\":\"%s\",\"imageUri\":\"%s\"}]' \"$IMAGE_NAME\" \"$IMAGE_URI\" > imagedefinitions.json"
+      #- printf '[{"name":"$IMAGE_NAME","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > taskdefinition.json
 artifacts:
   files:
     - imagedefinitions.json
