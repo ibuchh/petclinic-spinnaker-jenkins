@@ -42,3 +42,9 @@ phases:
       - echo push latest Docker images to Dokcer Hub ...
       - docker push $DOCKER_REPO_URL:$IMAGE_TAG
       - docker push $DOCKER_REPO_URL:latest
+      - export IMAGE_NAME='petclinic'
+      - export IMAGE_URI=$DOCKER_REPO_URL:$IMAGE_TAG
+      - "printf '[{\"name\":\"%s\",\"imageUri\":\"%s\"}]' \"$IMAGE_NAME\" \"$IMAGE_URI\" > imagedefinitions.json"
+artifacts:
+  files:
+    - imagedefinitions.json
