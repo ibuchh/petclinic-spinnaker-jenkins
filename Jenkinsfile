@@ -11,13 +11,8 @@ pipeline {
             }
         }
         stage('Test Application') {
-            agent {
-                docker {
-                    image 'maven:3-alpine' 
-                    args '-v /root/.m2:/root/.m2' 
-                }
-            }
             steps {
+                echo '=== Testing Petclinic Application ==='
                 sh 'mvn test'
             }
             post {
