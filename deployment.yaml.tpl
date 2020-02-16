@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: petclinic
-        image: gcr.io/$PROJECT_ID/spring-petclinic:latest
+        image: gcr.io/GOOGLE_CLOUD_PROJECT/spring-petclinic:latest
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
