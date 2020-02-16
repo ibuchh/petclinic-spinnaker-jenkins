@@ -4,6 +4,12 @@ steps:
   id: 'Clone'
   args: ['clone', 'ibuchh/petclinic-spinnaker-jenkins']
 
+# This step runs maven build.
+
+- name: maven:3.6.0-jdk-11-slim
+  entrypoint: 'mvn'
+  args: ['package']
+
 # This step builds the container image.
 
 - name: 'gcr.io/cloud-builders/docker'
