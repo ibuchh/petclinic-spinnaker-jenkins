@@ -3,7 +3,7 @@ version: 0.2
 env:
   variables:
     JAVA_HOME: "/usr/lib/jvm/java-8-openjdk-amd64"
-    DOCKER_REPO_USER: "ibuchh"
+    DOCKER_REPO_USER: "bisiakins"
     DOCKER_REPO_NAME: "petclinic-spinnaker-jenkins"
     ECR_REPOSITORY_URI: "890123456789.dkr.ecr.us-east-1.amazonaws.com/petclinic"
   parameter-store:
@@ -23,7 +23,7 @@ phases:
     commands:
       - echo Entered the pre_build phase..
       #- $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - docker login --username ibuchh --password $LOGIN_PASSWORD
+      - docker login --username bisiakins --password $LOGIN_PASSWORD
       - docker login –u $LOGIN_USER –p $LOGIN_PASSWORD
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - DOCKER_REPO_URL=$DOCKER_REPO_USER/$DOCKER_REPO_NAME

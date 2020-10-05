@@ -13,7 +13,7 @@ services:
 
 
   spring-petclinic:
-    image: ibuchh/petclinic-spinnaker-jenkins
+    image: bisiakins/petclinic-spinnaker-jenkins
     container_name: spring-petclinic
     mem_limit: 512M
     depends_on:
