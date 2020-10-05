@@ -2,7 +2,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/git'
   id: 'Clone'
-  args: ['clone', 'https://github.com/ibuchh/petclinic-spinnaker-jenkins']
+  args: ['clone', 'https://github.com/bisiakins/petclinic-spinnaker-jenkins']
 
 # This step runs maven build.
 
