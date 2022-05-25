@@ -31,7 +31,6 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: petclinic
     frontedBy: petclinic
   ports:
   - name: http
