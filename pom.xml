@@ -26,7 +26,7 @@
     <webjars-jquery.version>2.2.4</webjars-jquery.version>
     <wro4j.version>1.8.0</wro4j.version>
 
-    <jacoco.version>0.8.2</jacoco.version>
+    <jacoco.version>0.8.4</jacoco.version>
     <!-- Added by Irshad -->
     <imagetag>${git.commit.id.abbrev}</imagetag>
     <maven.build.timestamp.format>yyyyMMdd-HHmmssSSS</maven.build.timestamp.format>
