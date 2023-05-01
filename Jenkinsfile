@@ -18,7 +18,7 @@ pipeline {
             post {
                 always {
                     //junit 'target/surefire-reports/*.xml'
-                    echo '=== Skip Test Petclinic Application ==='
+                    echo '=== Skip Test Petclinic by Devich Application ==='
                 }
             }
         }
