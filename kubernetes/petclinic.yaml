@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: petclinic
-        image: amalgamik/last_hw
+        image: ibuchh/petclinic-spinnaker-jenkins
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
