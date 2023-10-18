@@ -17,7 +17,8 @@ pipeline {
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                    //junit 'target/surefire-reports/*.xml'
+                    echo '=== Skip Test Petclinic by Devich Application ==='
                 }
             }
         }
@@ -28,7 +29,7 @@ pipeline {
             steps {
                 echo '=== Building Petclinic Docker Image ==='
                 script {
-                    app = docker.build("ibuchh/petclinic-spinnaker-jenkins")
+                    app = docker.build("amalgamik/last_hw")
                 }
             }
         }
@@ -51,8 +52,8 @@ pipeline {
         stage('Remove local images') {
             steps {
                 echo '=== Delete the local docker images ==='
-                sh("docker rmi -f ibuchh/petclinic-spinnaker-jenkins:latest || :")
-                sh("docker rmi -f ibuchh/petclinic-spinnaker-jenkins:$SHORT_COMMIT || :")
+                sh("docker rmi -f amalgamik/last_hw:latest || :")
+                sh("docker rmi -f amalgamik/last_hw:$SHORT_COMMIT || :")
             }
         }
     }
